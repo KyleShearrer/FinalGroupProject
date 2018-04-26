@@ -66,7 +66,7 @@
 ## Implementation of listeners and event handlers
 A basic implementation of a handler (onClick function) and a listener (onClickListener) in Kotlin is much shorter than in Java as shown below.
 
-##### Java
+#### Java
 ```java
 
 public interface OnClickListener{
@@ -80,7 +80,7 @@ button.setOnClickListener(new OnClickListener(){
   }
 });
 ```
-##### Kotlin
+#### Kotlin
 ```kotlin
 button.setOnClickListener(object : OnClickListener{
   override fun onClick(view: View){
@@ -89,7 +89,7 @@ button.setOnClickListener(object : OnClickListener{
 })
 ```
 Notice that in Kotlin it is very similar to Java, we create an object of interface OnClickListener and define a method that overrides onClick. However in Kotlin it can be even less code if we choose to use Kotlin's ability to substitute a function that recieves an interface with a lambda
-##### Kotlin with lambda
+#### Kotlin with lambda
 
 ```kotlin
 fun setOnClickListener(listener: (View) -> Unit)
@@ -104,7 +104,7 @@ button.setOnClickListener({ view -> doSomething() })
   * Can the singleton instance be lazily instantiated?
 ## Procedural programming
   Kotlin supports procedural programming. In Kotlin you may start coding a function without encapsulating it, which Java does not allow. The following is the classic "hello world" program first in a Java class and then In Kotlin using procedural programming.
-  ##### Java
+  #### Java
 
   ```java
   public class HelloWorld {
@@ -116,7 +116,7 @@ button.setOnClickListener({ view -> doSomething() })
 }
 ```
   
-##### Kotlin
+#### Kotlin
 
   ```kotlin
   fun main(args : Array<String>) {
