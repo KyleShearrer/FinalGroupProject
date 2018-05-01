@@ -105,7 +105,52 @@ class PropertiesKotlin (var firstname: String, var lastname: String)  {
         set(value) {field = value}
 }
 ```
-* Interfaces / protocols
+## Interfaces / Protocols
+#### Java
+Java allows interfaces to be implemented with classes.  Interfaces in Java allows a group of empty methods to be implemented with one or more classes.  The methods in the interface are not allowed to have any code in them.  Fields are also not allowed in Java interfaces.  To implement an interface, you write the keyword “implements” along with the name of said interface after declaring the name of the class.  Once an interface is implemented, Java forces you to define all the methods of the interface into the class along with the “@Override” annotation before each method.  The interface and all its methods must be declared public in Java.
+```java
+public interface InterfaceJava {
+    public void method();
+    
+    public int method2(int field);
+}
+public class JavaClass implements InterfaceJava {
+    @Override
+    public void method() {
+        
+    }
+    
+    @Override
+    public int method2(int field) {
+        return field + 1;
+    } 
+}
+```
+#### Kotlin
+Interfaces in Kotlin work similarly as with Java, but with a few differences.  Kotlin allows properties and methods with code already inside of it to also be implemented in interfaces.  When implementing an interface with a class, you write a colon and the name of the interface after declaring the name of the class.  Kotlin also forces users to define all methods and properties of the interface into the class.  You also need to use an override annotation before each method and property, but that’s just the word “override” before each member. When defining a filled method with code in a class, you can use the interface’s code by using the “super” keyword or writing your own code.
+``` kotlin
+interface InterfaceKotlin {
+    val property: String
+
+    fun doSomething(prop: Int): Int {
+        return prop + 1
+    }
+
+    fun doNothing()
+}
+class ClassKotlin : InterfaceKotlin {
+    override val property: String = "property"
+
+    override fun doSomething(prop: Int): Int {
+        if (prop == 0) return super.doSomething(prop)
+        else return prop + 2
+    }
+
+    override fun doNothing() {
+        println("I will not do something!")
+    }
+}
+```
   * What does the language support?
   * What abilities does it have?
   * How is it used?
