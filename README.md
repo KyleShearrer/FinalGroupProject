@@ -37,7 +37,7 @@
 ## Instance reference name in data type (class)
 #### Java
 The most common use of the “this” keyword is when referencing object’s fields in a constructor. If you have the parameters of your constructor with the same names and types as the object’s fields, the “this” keyword is used to refer to the object’s fields.  “This” can also be used to call another constructor inside another constructor in the same class.  The constructors have to have similar parameters. 
-'''java
+```java
 public class ThisJava {
     private int first;
     private int second;
@@ -55,10 +55,10 @@ public class ThisJava {
         this.fourth = fourth;
     }
 }
-'''
+```
 #### Kotlin
 The “this” keyword is used similarly in Kotlin.  Since Kotlin has primary constructors built when naming the class, the “this” keyword is used with secondary constructors.   “This” can also be used to refer to the current object/property of the class.
-'''kotlin
+```kotlin
 class ThisKotlin(t: Int) {
     var k = this@ThisKotlin
     
@@ -75,7 +75,7 @@ class Noun {
         this.person = person
     }
 }
-'''
+```
 * Properties
   * Getters and setters…write your own or built in?
   * Backing variables?
