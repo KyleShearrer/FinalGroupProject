@@ -76,10 +76,35 @@ class Noun {
     }
 }
 ```
-* Properties
-  * Getters and setters…write your own or built in?
-  * Backing variables?
-  * Computed properties?
+#### Properties
+## Java
+When trying to reach or change properties in your object, you the programmer have to write the code for getters and setters.  Since Java has you code your own getter and setters, backing fields are not needed, and computer properties are basically just the getter methods.
+```java
+public class PropertiesJava {
+    private String property;
+    
+    public String getProperty() {
+        return property;
+    }
+    
+    public void setProperty(String property) {
+        this.property = property;
+    }
+}
+```
+## Kotlin
+When trying to reach or change properties in your object, Kotlin automatically has getters and setters built in when building a class.  But you can build your own custom getters and setters to do what you want specifically.  A computed property (fullname), a field that doesn’t store a value but can make a custom getter to grant property access, can be used in Kotlin.  You simply make a new field and create your getter in the next line underneath it.  Backing fields (property) are used when you want to write out the code for basic getters and setters.  You use backing fields by using the keyword “field”.
+```kotlin
+class PropertiesKotlin (var firstname: String, var lastname: String)  {
+
+    val fullname : String
+        get() = "$firstname $lastname"
+
+    var property = ""
+        get() = field
+        set(value) {field = value}
+}
+```
 * Interfaces / protocols
   * What does the language support?
   * What abilities does it have?
