@@ -34,8 +34,48 @@
   * Creating new instances
   * Constructing/initializing
   * Destructing/de-initializing
-* Instance reference name in data type (class)
-  * this? self?
+## Instance reference name in data type (class)
+#### Java
+The most common use of the “this” keyword is when referencing object’s fields in a constructor. If you have the parameters of your constructor with the same names and types as the object’s fields, the “this” keyword is used to refer to the object’s fields.  “This” can also be used to call another constructor inside another constructor in the same class.  The constructors have to have similar parameters. 
+'''java
+public class ThisJava {
+    private int first;
+    private int second;
+    private int third;
+    private int fourth;
+    
+    public ThisJava(int first, int second) {
+        this.first = first;
+        this.second = second;
+    }
+    
+    public ThisJava(int first, int second, int third, int fourth) {
+        this(first, second);
+        this.third = third;
+        this.fourth = fourth;
+    }
+}
+'''
+#### Kotlin
+The “this” keyword is used similarly in Kotlin.  Since Kotlin has primary constructors built when naming the class, the “this” keyword is used with secondary constructors.   “This” can also be used to refer to the current object/property of the class.
+'''kotlin
+class ThisKotlin(t: Int) {
+    var k = this@ThisKotlin
+    
+    var number1 = BigDecimal(1)
+    var number2 = 2.bd
+
+    private val Int.bd: BigDecimal
+        get() = BigDecimal(this)
+}
+class Noun {
+    var person: String
+
+    constructor(person: String) {
+        this.person = person
+    }
+}
+'''
 * Properties
   * Getters and setters…write your own or built in?
   * Backing variables?
