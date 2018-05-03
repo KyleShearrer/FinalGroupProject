@@ -151,9 +151,6 @@ class ClassKotlin : InterfaceKotlin {
     }
 }
 ```
-  * What does the language support?
-  * What abilities does it have?
-  * How is it used?
 * Inheritance / extension
 * Reflection
   * What reflection abilities are supported?
