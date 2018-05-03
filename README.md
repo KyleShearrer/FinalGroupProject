@@ -1,4 +1,8 @@
 # FinalGroupProject
+
+## Written BY:
+Jordan Liebman
+(everyone don't forget to put your names)
 * Pick two object-oriented languages.
 * Form a team to work on the comparison.
   * You can be a team of 1.
