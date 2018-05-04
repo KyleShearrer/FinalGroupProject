@@ -1,8 +1,10 @@
 # Object Oriented Final Group Project, Comparing Java and Kotlin
 
 ### Written BY:
-Jordan Liebman
-(everyone don't forget to put your names)
+* Andy Ziber
+* Jordan Wieberg
+* Kyle Shearrer
+* Jordan Liebman
 
 # Comparison Criteria
 * Language purpose/genesis
