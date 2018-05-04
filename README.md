@@ -142,10 +142,218 @@ class ClassKotlin : InterfaceKotlin {
     }
 }
 ```
-* Inheritance / extension
-* Reflection
-  * What reflection abilities are supported?
-  * How is reflection used?
+## Inheritance / extension
+#### Java
+Java allows classes to extend their fields and methods to other classes.  Constructors cannot be inherited but the constructor of the superclass can be called in the subclass.  You do use inheritance by writing “extends” and the name of the class that has the methods you would like to use.  To use to the superclass’ members, you have to use the “super” keyword.  If you want the purpose of a method to change, you use the “@Override” annotation and write the new code in the method.  Private members of the superclass cannot be inherited to the subclass.  You can also add as many more fields and methods as you’d like in the subclass.  Java does not support extension methods.
+``` java
+public class ExtendJava extends Class {
+    public int field2;
+    
+    public ExtendJava(int field) {
+        super(field);
+    }
+    
+    @Override
+    public void method(int field) {
+        field = super.method2(super.field);
+    }   
+}
+class Class {
+    public int field;
+    private int field2;
+    
+    Class(int field) {
+        this.field = field;
+    }
+    
+    public void method(int field) {
+        
+    }
+    
+    public int method2(int field) {
+        return field + 1;
+    }
+}
+```
+#### Kotlin
+Kotlin’s inheritance works similarly with Java’s.  To show a subclass is inheriting from a superclass, the superclass is listed with the name of the subclass along with a “:”.  To rewrite a superclass method in the subclass, you simply add the “override” keyword similarly to Java.  If you want a method or field to be inherited by the subclass, you must add the “open” keyword with the class name and field or method you want to use.  If you don’t want a field or method to be inherited, use the “final” keyword.  The “super” keyword works similarly with Java’s super.  Inner classes in the subclass can also access members of the superclass by using the “super” keyword along with a label of the subclass.  Kotlin does support extension functions and extension properties.  Extensions allow programmers to extend from a class without having to inherit from the actual class.  You can create extensions for classes that are already in Kotlin as well (ex. ArrayList).  To create an extension function from a class, you code a function with the class name along with the function name.  Then you write whatever you want your function to do.  Writing an extension property is similar to an extension function, except with a getter instead of code inside of a function.
+``` kotlin
+class ExtendKotlin(): Class() {
+    override var field: Int = 2;
+
+    override fun method(): Int {
+        return super.method2(super.field + 3)
+    }
+
+    inner class Extend {
+        fun method3() {
+            super@ExtendKotlin.field = 8;
+        }
+    }
+
+}
+open class Class() {
+    open var field: Int = 0
+    final var field2: String = ""
+
+    open fun method(): Int {
+        return 0
+    }
+
+    final fun method2(field: Int): Int {
+        return field + 1
+    }
+
+    val ArrayList<Int>.middle: Int
+        get() = size%2
+}
+fun main(args: Array<String>) {
+    fun Class.newMethod() {
+        println("I'm an extension")
+    }
+
+    val newClass = Class()
+    newClass.newMethod()
+
+    fun ArrayList<Int>.increment(i1: Int, i2: Int, i3: Int) {
+        this[i1].inc()
+        this[i2].inc()
+        this[i3].inc()
+    }
+    val array = arrayListOf(55, 56, 53)
+    array.increment(0, 1, 2)
+}
+```
+## Reflection
+#### Java
+Reflection is an API used to give programmers information about a class to which an object is from including fields, constructors, and methods. Reflection can also allow access to members of a class to be used similarly with inheritance and even private members of a class can be used.  To use reflection you simply create an instance of a class and use the getClass() method to gain access to many other get methods that gives you information about the class.  To be able to use the methods from the class, you must first declare a method and have it equal to the class’s declared method with its parameters including the name of the method and its parameters.  Then use the invoke method.  And if you want access to private members of the class, you first have to set its accessibility to true. 
+``` java
+import java.lang.reflect.Method;
+import java.lang.reflect.Field;
+
+public class ReflectJava {
+    private String name;
+
+    public ReflectJava()  {
+        name = "Bob"; 
+    }
+ 
+    public void method()  {
+        System.out.println("My name is " + name);
+    }
+ 
+    public void method2(int n)  {
+        System.out.println(n + " + 1 = " + (n+1));
+    }
+
+    private void method3() {
+        System.out.println("Private method has been called");
+    }
+    public String getName() {
+        return this.name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+class Main {
+    public static void main(String args[]) throws Exception {
+        ReflectJava reflect = new ReflectJava();
+        
+        System.out.println("The class's package name is " + reflect.getClass().getPackage());
+    
+        System.out.println("The class's name is " + reflect.getClass().getSimpleName());
+        
+        System.out.println("The class's name is " + reflect.getClass().getCanonicalName());
+        
+        System.out.println("The class's constructor name is " + reflect.getClass().getConstructor().getName());
+        
+        System.out.println("The class's field is " + reflect.getClass().getDeclaredField("name"));
+        
+        System.out.println("The class's public methods are");
+        Method[] methods = reflect.getClass().getMethods();
+        for(Method method:methods) {
+            System.out.println("\t" + method.getName());
+        }
+        
+        Method method = reflect.getClass().getDeclaredMethod("method");
+        Field field = reflect.getClass().getDeclaredField("name");
+        field.setAccessible(true);
+        field.set(reflect, "Shirley");
+        method.invoke(reflect);
+        
+        Method method2 = reflect.getClass().getDeclaredMethod("method2", int.class);
+        method2.invoke(reflect, 7);
+        
+        Method method3 = reflect.getClass().getDeclaredMethod("method3");
+        method3.setAccessible(true);
+        method3.invoke(reflect);
+    }
+}
+```
+#### Kotlin
+Kotlin’s reflection can work almost the exact same as Java if you use the javaClass function reference which allows access to all of the same methods used for reflection in Java.  But Kotlin’s way of reflection is using the “::” operator.  The “::” operator is used for creating a reference to a class’s function/class/variable.  You can also use the operator to reference functions, compose to functions together, and reference properties.
+``` kotlin
+import kotlin.reflect.full.declaredMemberFunctions
+import kotlin.reflect.full.declaredMemberProperties
+
+class ReflectKotlin(val name: String, val num: Int) {
+    fun method() {
+        System.out.println("My name is " + name)
+    }
+
+    fun method2(num: Int) {
+        println("$num + 1 = ${num+1}")
+
+    }
+
+    private fun method3() {
+        println("Private method has been called")
+    }
+}
+fun main(args: Array<String>) {
+    val reflect = ReflectKotlin("Bob", 10)
+
+    println("Class Name: ${reflect.javaClass.simpleName}")
+
+    reflect.javaClass.declaredFields.forEach {
+        println("Type:${it.type} Name:${it.name}")
+    }
+    reflect.javaClass.declaredMethods.forEach {
+        println("Name:${it.name} Return Type:${it.returnType}")
+    }
+
+    val method = reflect.javaClass.getDeclaredMethod("method")
+    val field = reflect.javaClass.getDeclaredField("name")
+    field.setAccessible(true)
+    field.set(reflect, "Shirley")
+    method.invoke(reflect)
+
+    val method2 = reflect.javaClass.getDeclaredMethod("method2", Int::class.javaPrimitiveType)
+    method2.invoke(reflect, 99)
+
+    val method3 = reflect.javaClass.getDeclaredMethod("method3")
+    method3.setAccessible(true)
+    method3.invoke(reflect)
+
+    val c = ReflectKotlin::class
+    for (func in c.declaredMemberFunctions) {
+        println(func.name)
+    }
+    for (vari in c.declaredMemberProperties) {
+        println(vari.name)
+    }
+    val d = ReflectKotlin::num
+
+    fun isEven(x: Int) = x % 2 == 0
+    val nums = arrayListOf(10, 11, 12, 13, 14)
+    println(nums.filter(::isEven))
+
+    println(::num.get())
+    println(::num.name)
+}
+val num = 99
+```
 * Memory management
   * How is it handled?
   * How does it work?
