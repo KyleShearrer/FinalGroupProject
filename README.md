@@ -433,5 +433,56 @@ button.setOnClickListener({ view -> doSomething() })
 ## Functional programming
 Kotlin also supports functional programming.
 ## Multithreading
-  * Threads or thread-like abilities
-  * How is multitasking accomplished?
+In Java you can achieve multithreading by Implementing the Runnable interface or by extending the Thread class.
+#### Java
+``` java
+// Threading by implementing Runnable interface
+class OurThread implements Runnable{  
+	public void run(){  
+		System.out.println("thread is running...");  
+	}  
+	public static void main(String args[]){  
+		OurThread m1=new OurThread();  
+		Thread t1 =new Thread(m1);  
+		t1.start(); 
+    }
+}
+// Threading by extending the Thread class
+class OurExtendedThread extends Thread{  
+	public void run(){  
+		System.out.println("thread is running...");  
+	}  
+	public static void main(String args[]){  
+		OurExtendedThread t1=new OurExtendedThread();  
+		t1.start();  
+ 	}  
+} 
+```
+#### Kotlin
+In Kotlin multithreading is achieved in a similar way to Java, because you can use Java classes in Kotlin. everything you need to know about the standard library function thread in kotlin is here.
+``` kotlin
+fun thread(
+    start: Boolean = true, 
+    isDaemon: Boolean = false, 
+    contextClassLoader: ClassLoader? = null, 
+    name: String? = null, 
+    priority: Int = -1, 
+    block: () -> Unit
+): Thread (source)
+```
+and an example of its use follows
+``` kotlin
+// Threading by extending the Thread class
+object : Thread() {  
+    override fun run() {
+       println("test")
+    }
+}.start()
+//Threading by implementing the Runnable interface
+
+Thread(Runnable {
+    Thread.sleep(1000)
+    println("test")
+})
+
+```
