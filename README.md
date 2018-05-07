@@ -493,18 +493,130 @@ fun main(args: Array<String>) {
 }
 val num = 99
 ```
-* Memory management
-  * How is it handled?
-  * How does it work?
-  * Garbage collection?
-  * Automatic reference counting?
-* Comparisons of references and values
-  * How are values compared? (i.e. comparing two strings)
-* Null/nil references
-  * Which does the language use? (null/nil/etc)
-  * Does the language have features for handling null/nil references?
-* Errors and exception handling
-* Lambda expressions, closures, or functions as types
+## Memory management
+### How is it handled?
+#### Java
+In java, all objects reside in an area, or space, called the heap. The Java Virtual Machine creates this at startup and can dynamically increase or decrease it as needed. 
+The heap is sometimes divided into two spaces, the nursery and the old space. The nursery holds new objects, the old space older ones.
+#### Kotlin
+Kotlin makes use of the JVM, same as Java does, using the heap and garbage collecting. 
+	
+
+### How does it work?
+#### Java
+During object creation, java decides if an object is small or large. What exactly is considered a large object varies, but it is usually between 2 and 128kb
+#### Kotlin
+Kotlin creates and stores its objects similarly to java as they both run on the JVM
+### Garbage collection?
+#### Java
+Java has, and is often quite known for, its garbage collection. When the heap becomes full the garbage collector kicks in and attempts to clear out objects that are no longer being used, in order to free up space for more. 
+When the heap is divided into nursery and old space, they have separate amounts of storage. When the nursery fills up, a special garbage collector called the young collection activates and promotes any objects in the nursery that have lived long enough to the old space. Once the old space is full, a garbage collector called old collection frees up space. 
+This is very useful as many objects are short lived and keeping them in the nursery allows for them to be freed faster, as well as easier to find when needed. 
+#### Kotlin
+Kotlin is run on the JVM and will be identical to Java, depending on the settings of your JVM runtime. 
+### Automatic reference counting?
+#### Java
+Java does not have Automatic reference counting, instead making use of the nursery and old space as described above. 
+#### Kotlin
+Kotlin/Native makes use of automatic reference counting as well as a cycle counter when used without a VM, but regular Kotlin does not, as it is Java based
+## Comparisons of references and values
+### How are values compared? (i.e. comparing two strings)
+#### Java
+You can compare values in two different ways, the value, or the memory address. 
+Java compares these with the “==” operator and “.equals()” method.
+
+	== is used for reference comparison, or address comparison
+	.equals() is used for content comparison.
+#### Kotlin
+Kotlin uses == and equals() interchangeably to compare values or structural equality 
+Kotlin uses === for referential equality, to compare if two objects have the same memory address or not. 
+	
+## Null/nil references
+### Which does the language use? (null/nil/etc)
+Both Kotlin and Java use “null” to indicate null/nil. 
+
+### Does the language have features for handling null/nil references?
+#### Java
+Java handles Null poorly, the null pointer exception is the bane of many programmer’s existence. Java 8 introduces an optional feature to java in the form of the class java.util.Optional, which helps to solve some of those issues. Optionals may or may not have a return type, which prevents them from having null pointer issues. 
+#### Kotlin
+Kotlin takes great steps to avoid issues with null pointer exceptions, to the point where there are only a few things that cause them in the language.
+	* Explicitly calling them via throw NullPointerException()
+	* The !! or “not null assertion operator”
+	* Java interoperation, or times when Java messes with Kotlin via external code or other trickery.  
+## Errors and exception handling
+#### Java
+Java handles exceptions and errors through “try catch” blocks
+
+    try {
+    
+    } catch (try {   ExceptionType name) {
+    
+    } catch (ExceptionType name) {
+    
+    }
+(code example from https://goo.gl/gMHMBr)
+
+Each catch block is an exception handler that is handled based on its ExceptionType argument. The Catch block contains code that implements if the exception is called. 
+
+#### Kotlin
+Kotlin makes use of an almost identical process to java for exception and error handling, with some minor syntax changes. 
+
+    try {
+        // some code
+    }
+    catch (e: SomeException) {
+        // handler
+    }
+    finally {
+        // optional finally block
+    } 
+(code example from https://goo.gl/Ei6C4f)
+
+## Lambda expressions, closures, or functions as types
+#### Java
+Java 8 allows for Lambda expressions allow you to treat functionality as method argument, or code as data. A Lambda function can be created without belonging to any class. 
+Java uses these lambda expressions instead of closures, as they are similar.
+
+This is the general syntax that Lambda's follows
+
+	(argument-list) -> {body}
+
+In practice, this can turn a function like this 
+
+	interface Drawable{  
+		public void draw();  
+	}  
+	public class LambdaExpressionExample {  
+		public static void main(String[] args) {  
+			int width=10;  
+
+			//without lambda, Drawable implementation using anonymous class  
+			Drawable d=new Drawable(){  
+				public void draw(){System.out.println("Drawing "+width);}  
+			};  
+			d.draw();  
+		}  
+	}  
+
+Into something like this
+
+	interface Sayable{  
+		public String say();  
+	}  
+	public class LambdaExpressionExample3{  
+	public static void main(String[] args) {  
+		Sayable s=()->{  
+			return "I have nothing to say.";  
+		};  
+		System.out.println(s.say());  
+	}  
+	}  
+
+(Code examples from https://goo.gl/b7tGv7)
+
+#### Kotlin
+Kotlin as well, allows for Lambda expressions in the same way java does, with one addition. Kotlin can take a Lambda expression and a Inline function together and performant custom control structures
+
 
 [comment]: # (Jordan)
 
