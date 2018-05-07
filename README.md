@@ -69,15 +69,101 @@
   fun hotdog(){}
   class Buns{}
   ```
-* Types
-  * What types does the language support?
-  * Are both reference and value types supported?
-  * Can new value types be created?
-* Classes
-  * Defining
-  * Creating new instances
-  * Constructing/initializing
-  * Destructing/de-initializing
+## Types
+  ### What types does the language support?
+  Both java and kotlin have the same basic primative types . As in bytes, char, short, int, long, float, double, boolean, void. When delcaring types in kotlin you do not need to delcare a data type because it is not a strongly worded langauge and the language itself will be able to determine what the variable type needs to be.
+  ### Are both reference and value types supported?
+  #### Java
+  Java supports both refernce and value types. The basic primative types are value types but objects like strings are reference tpyes.
+  ```Java
+  public class Dogs{
+  //call by value
+  int age = 1;
+  //call by reference
+  String name = "Nelson";
+  }
+  ```
+  #### Kotlin
+  Kotlin also supports both reference and value types.
+  ```Kotlin
+  class Dogs{
+  val firstName: String = "Chess"
+  val fistName1 = "Chess"
+  
+  val age: Int = 2
+  val age1 = 2
+  }
+  ```
+  
+  ### Can new value types be created?
+  No new value types can not be created.
+## Classes
+  ### Defining
+  #### Java
+  ```Java
+  public class Dog{
+  }
+  ```
+   #### Kotlin
+    ``` Kotlin
+    class Money {
+    }
+    ```
+  ## Creating new instances
+  #### Java
+  ``` Java
+  Dog hotDog = new Dog();
+  ```
+  #### Kotlin
+  ``` Kotlin
+  val money = Money()
+  val customer = Customer("Billy Bob Thornton")
+  ``` 
+  ## Constructing/initializing
+  #### Java
+  ``` Java
+  Dog hotDog = new Dog()
+  Constructing/initializing
+  public class Dog{
+  }
+  Dog(string breed){
+  }
+  Pet(string breed, string name, int age){
+  }
+  }
+  ```
+  Constructors are called when they are given the correct arguments
+  ``` Java
+  Dog paul = new Dog();
+  Dog paully = new Dog("paul");
+  Dog Randy = new Dog('Chow Chow', 'Randy', 13);
+  ```
+  #### Kotlin
+  Each class has one primary constructors and then secondary constructors
+``` Kotlin
+class Person constructor(firstName: String) {
+}
+```
+Primary Constructors can not contain any code in it. The keyword init can be used to of initialization to implement code
+``` Kotlin
+class InitOrderDemo(name: String) {
+    val firstProperty = "First property: $name".also(::println)
+
+    init {
+        println("First initializer block that prints ${name}")
+    }
+}
+```
+If the class already has a primary constructor then it can have a secondary constructor
+```Kotlin
+class Person {
+    constructor(parent: Person) {
+        parent.children.add(this)
+    }
+}
+```
+  ## Destructing/de-initializing
+  Both Java and Kotlin have a form of a garbage collector that destroyes objects when they are no longer in use.
 ## Instance reference name in data type (class)
 #### Java
 The most common use of the “this” keyword is when referencing object’s fields in a constructor. If you have the parameters of your constructor with the same names and types as the object’s fields, the “this” keyword is used to refer to the object’s fields.  “This” can also be used to call another constructor inside another constructor in the same class.  The constructors have to have similar parameters. 
