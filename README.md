@@ -705,7 +705,33 @@ This is thread-safe, and allows lazy initialization. By simply using an object d
 ```
   
 ## Functional programming
-Kotlin also supports functional programming.
+Kotlin allows for Functional Programming. Whereas in Java even after the introduction of lambdas, the Java language remains an imperative one. It doesn't allow you to write code as pure functions, has statements changing the state of the program used more than expressions independent of state, and favors mutability over immutability. In Java the word Final is used to make an object immutable. This takes much longer to write than its equivalent in Kotlin, val instead of var which would declare a variable. 
+#### Java
+``` Java
+Final String person = "John";
+```
+#### Kotlin
+``` Kotlin
+val person = "John"
+```
+Below is a simple example of the use of expressions vs statements in the two languages.
+#### Java
+
+``` Java
+String name = "Anonymous";
+if(person.name){
+name = person.name;
+}
+```
+The above Java code is written as an expression followed by another statement inside of an if statement. In Kotlin we could write this code in a Functional style with one expression.
+#### Kotlin
+
+``` Kotlin
+val name = if(person.name){
+person.name}
+else "Anonymous"
+```
+The above Kotlin code accomplishes the same thing but in the Functional paradigm by favoring expressions over statements.
 ## Multithreading
 In Java you can achieve multithreading by Implementing the Runnable interface or by extending the Thread class.
 #### Java
