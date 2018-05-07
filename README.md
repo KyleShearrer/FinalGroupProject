@@ -163,7 +163,7 @@ class Person {
 }
 ```
   ## Destructing/de-initializing
-  Both Java and Kotlin have a form of a garbage collector that destroyes objects when they are no longer in use.
+  Both Java and Kotlin have a form of a garbage collector that destroys objects when they are no longer in use.
 ## Instance reference name in data type (class)
 #### Java
 The most common use of the “this” keyword is when referencing object’s fields in a constructor. If you have the parameters of your constructor with the same names and types as the object’s fields, the “this” keyword is used to refer to the object’s fields.  “This” can also be used to call another constructor inside another constructor in the same class.  The constructors have to have similar parameters. 
