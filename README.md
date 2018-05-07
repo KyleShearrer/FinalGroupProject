@@ -404,10 +404,33 @@ button.setOnClickListener({ view -> doSomething() })
 ```
 [Reference]: # (https://medium.com/@dbottillo/kotlin-by-examples-methods-and-lambdas-25aef7544365)
 
-## Singleton
-  * How is a singleton implemented?
-  * Can it be made thread-safe?
-  * Can the singleton instance be lazily instantiated?
+## Singleton  
+In Kotlin, singletons are used as a replacement for static members and fields, as they do not exist in Kotlin. A singleton is created by declaring an object. An object doesn't have any constructor like a class does but has an init block that allows initialization of code if needed.
+  #### Kotlin
+``` kotlin
+object SomeSingleton {
+    init {
+        println("init complete")
+    }
+}
+```
+The object will be instantiated and its init blocks will be executed lazily upon first access, in a thread-safe way. Kotlin objects actually rely on a Java static initialization block. The above Kotlin object will be compiled to the following equivalent Java code:
+#### Java
+``` java
+public final class SomeSingleton {
+   public static final SomeSingleton INSTANCE;
+
+   private SomeSingleton() {
+      INSTANCE = (SomeSingleton)this;
+      System.out.println("init complete");
+   }
+
+   static {
+      new SomeSingleton();
+   }
+}
+```
+This is thread-safe, and allows lazy initialization. By simply using an object declaration in Kotlin, you are guaranteed to get a safe and efficient singleton implementation.
 ## Procedural programming
   Kotlin supports procedural programming. In Kotlin you may start coding a function without encapsulating it, which Java does not allow. The following is the classic "hello world" program first in a Java class and then In Kotlin using procedural programming.
   #### Java
