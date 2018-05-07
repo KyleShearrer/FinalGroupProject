@@ -103,12 +103,13 @@
   ```Java
   public class Dog{
   }
-  ```
-   #### Kotlin
-    ```kotlin
+  ```  
+  
+   #### Kotlin  
+  ```Kotlin
     class Money {
     }
-    ```
+  ```  
   ## Creating new instances
   #### Java
   ``` Java
