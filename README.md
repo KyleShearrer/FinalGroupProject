@@ -105,7 +105,7 @@
   }
   ```
    #### Kotlin
-    ``` Kotlin
+    ```kotlin
     class Money {
     }
     ```
