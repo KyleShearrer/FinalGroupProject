@@ -30,6 +30,11 @@
   Kotlin was a replacement for java. Kotlin still uses parts of Java and even in your Kotlin code you can use Java code in it.
 * Unique features of the language
   * Does the language have any particularly unique features?
+  #### Java
+  The most unique feature of java is how it is able to run on about anything. It is extremely reliable and portable. It is platform independent so java has the ability to run the same program on many different systems with no hiccups. Even a toaster could probably run a java program.
+  #### Kotlin
+  The most unique feature of Kotlin is that Kotlin and Java code can be intertwined in the same program. In you Kotlin program you can add java code in the middle and the program will work just fine.
+
 * Name spaces
   * How are name spaces implemented?
   * How are name spaces used?
