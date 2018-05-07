@@ -9,8 +9,25 @@
 # Comparison Criteria
 * Language purpose/genesis
   * Why was the language created?
+  #### Java
+  The language was created to be used on a variety of day-to-day products. There were 5 principles in the creation of Java.
+  1. It must be "Simple, object-oriented, and familiar"
+  2. It must be "robust and secure"
+  3. It must be "archituecture-nuetral and portable"
+  4. it must execute with "high performance"
+  5. it must be "interpreted threaded, and dynamic"
+  #### Kotlin
+  Kotlin was created to basically replace java. The creators realzied that java had run its corse and there are obvious problems with Java that need to be fixed.
   * What problems was the language trying to address?
+  #### Java
+    The problem java was trying to fix was to have greater uniformity and simplicity within the language unlike C/C++. They wanted to make a language where is was extremely reliable language and could work on any machine. They slogan they had while making Java was "Write Once, Run Anywhere"
+    #### Kotlin
+    The problems that the language was trying to fix was that Java was from a different time and need a fresh update to bring into the modern age. The main goal was to update and condense java and make it more user friendly.
   * Is the language a reaction to a previous language or a replacement for another language?
+  #### Java
+  Java was a reaction to C/C++ and also a attempted replacement of them. Java wanted to provide a simple and more uniformed experience then C/C++.
+  #### Kotlin
+  Kotlin was a replacement for java. Kotlin still uses parts of Java and even in your Kotlin code you can use Java code in it.
 * Unique features of the language
   * Does the language have any particularly unique features?
 * Name spaces
