@@ -547,7 +547,7 @@ Kotlin takes great steps to avoid issues with null pointer exceptions, to the po
 ## Errors and exception handling
 #### Java
 Java handles exceptions and errors through “try catch” blocks
-
+```Java
     try {
     
     } catch (try {   ExceptionType name) {
@@ -555,13 +555,14 @@ Java handles exceptions and errors through “try catch” blocks
     } catch (ExceptionType name) {
     
     }
+```
 (code example from https://goo.gl/gMHMBr)
 
 Each catch block is an exception handler that is handled based on its ExceptionType argument. The Catch block contains code that implements if the exception is called. 
 
 #### Kotlin
 Kotlin makes use of an almost identical process to java for exception and error handling, with some minor syntax changes. 
-
+```Kotlin
     try {
         // some code
     }
@@ -570,7 +571,8 @@ Kotlin makes use of an almost identical process to java for exception and error 
     }
     finally {
         // optional finally block
-    } 
+    }
+```
 (code example from https://goo.gl/Ei6C4f)
 
 ## Lambda expressions, closures, or functions as types
@@ -579,11 +581,11 @@ Java 8 allows for Lambda expressions allow you to treat functionality as method 
 Java uses these lambda expressions instead of closures, as they are similar.
 
 This is the general syntax that Lambda's follows
-
+```Java
 	(argument-list) -> {body}
-
+```
 In practice, this can turn a function like this 
-
+```Java
 	interface Drawable{  
 		public void draw();  
 	}  
@@ -598,9 +600,9 @@ In practice, this can turn a function like this
 			d.draw();  
 		}  
 	}  
-
+```
 Into something like this
-
+```java
 	interface Sayable{  
 		public String say();  
 	}  
@@ -612,7 +614,7 @@ Into something like this
 		System.out.println(s.say());  
 	}  
 	}  
-
+```
 (Code examples from https://goo.gl/b7tGv7)
 
 #### Kotlin
