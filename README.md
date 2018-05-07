@@ -7,8 +7,8 @@
 * Jordan Liebman
 
 # Comparison Criteria
-* Language purpose/genesis
-  * Why was the language created?
+## Language purpose/genesis
+  ### Why was the language created?
   #### Java
   The language was created to be used on a variety of day-to-day products. There were 5 principles in the creation of Java.
   1. It must be "Simple, object-oriented, and familiar"
@@ -18,26 +18,57 @@
   5. it must be "interpreted threaded, and dynamic"
   #### Kotlin
   Kotlin was created to basically replace java. The creators realzied that java had run its corse and there are obvious problems with Java that need to be fixed.
-  * What problems was the language trying to address?
+  ### What problems was the language trying to address?
   #### Java
-    The problem java was trying to fix was to have greater uniformity and simplicity within the language unlike C/C++. They wanted to make a language where is was extremely reliable language and could work on any machine. They slogan they had while making Java was "Write Once, Run Anywhere"
-    #### Kotlin
-    The problems that the language was trying to fix was that Java was from a different time and need a fresh update to bring into the modern age. The main goal was to update and condense java and make it more user friendly.
-  * Is the language a reaction to a previous language or a replacement for another language?
+  The problem java was trying to fix was to have greater uniformity and simplicity within the language unlike C/C++. They wanted to make a language where is was extremely reliable language and could work on any machine. They slogan they had while making Java was "Write Once, Run Anywhere"
+   #### Kotlin
+   The problems that the language was trying to fix was that Java was from a different time and need a fresh update to bring into the modern age. The main goal was to update and condense java and make it more user friendly.
+  ### Is the language a reaction to a previous language or a replacement for another language?
   #### Java
   Java was a reaction to C/C++ and also a attempted replacement of them. Java wanted to provide a simple and more uniformed experience then C/C++.
   #### Kotlin
   Kotlin was a replacement for java. Kotlin still uses parts of Java and even in your Kotlin code you can use Java code in it.
-* Unique features of the language
-  * Does the language have any particularly unique features?
+## Unique features of the language
+  ### Does the language have any particularly unique features?
   #### Java
   The most unique feature of java is how it is able to run on about anything. It is extremely reliable and portable. It is platform independent so java has the ability to run the same program on many different systems with no hiccups. Even a toaster could probably run a java program.
   #### Kotlin
   The most unique feature of Kotlin is that Kotlin and Java code can be intertwined in the same program. In you Kotlin program you can add java code in the middle and the program will work just fine.
 
-* Name spaces
-  * How are name spaces implemented?
-  * How are name spaces used?
+## Name spaces
+  ### How are name spaces implemented?
+  #### Java
+  Name spaces are implemented in java in the use of packagaes. Packagaes are a named collection of classes and subclasses. They are like folders on a computer
+  #### Kotlin
+  Name spaces are used in the form of packages, like java. They act like a folder and contain files inside of them. They contian classes and sublacsses.
+  ### How are name spaces used?
+  #### Java
+  ```java
+  //in the Draggable.java file
+  package movie;
+  public interface Scenes {
+      . . .
+  }
+
+  //in the Graphic.java file
+  package movies;
+  public abstract class Graphic {
+      . . .
+  }
+
+  //in the Act.java file
+  package movies;
+  public class Act extends Graphic
+      implements Scenes {
+      . . .
+  }
+  ```
+  #### Kotlin
+  ```Kotlin
+  package food.bar
+  fun hotdog(){}
+  class Buns{}
+  ```
 * Types
   * What types does the language support?
   * Are both reference and value types supported?
@@ -376,93 +407,18 @@ fun main(args: Array<String>) {
 }
 val num = 99
 ```
-## Memory management
-### How is it handled?
-#### Java
-In java, all objects reside in an area, or space, called the heap. The Java Virtual Machine creates this at startup and can dynamically increase or decrease it as needed. 
-The heap is sometimes divided into two spaces, the nursery and the old space. The nursery holds new objects, the old space older ones.
-#### Kotlin
-Kotlin makes use of the JVM, same as Java does, using the heap and garbage collecting. 
-	
-
-### How does it work?
-#### Java
-During object creation, java decides if an object is small or large. What exactly is considered a large object varies, but it is usually between 2 and 128kb
-#### Kotlin
-Kotlin creates and stores its objects similarly to java as they both run on the JVM
-### Garbage collection?
-#### Java
-Java has, and is often quite known for, its garbage collection. When the heap becomes full the garbage collector kicks in and attempts to clear out objects that are no longer being used, in order to free up space for more. 
-When the heap is divided into nursery and old space, they have separate amounts of storage. When the nursery fills up, a special garbage collector called the young collection activates and promotes any objects in the nursery that have lived long enough to the old space. Once the old space is full, a garbage collector called old collection frees up space. 
-This is very useful as many objects are short lived and keeping them in the nursery allows for them to be freed faster, as well as easier to find when needed. 
-#### Kotlin
-Kotlin is run on the JVM and will be identical to Java, depending on the settings of your JVM runtime. 
-### Automatic reference counting?
-#### Java
-Java does not have Automatic reference counting, instead making use of the nursery and old space as described above. 
-#### Kotlin
-Kotlin/Native makes use of automatic reference counting as well as a cycle counter when used without a VM, but regular Kotlin does not, as it is Java based
-## Comparisons of references and values
-### How are values compared? (i.e. comparing two strings)
-#### Java
-You can compare values in two different ways, the value, or the memory address. 
-Java compares these with the “==” operator and “.equals()” method.
-
-	== is used for reference comparison, or address comparison
-	.equals() is used for content comparison.
-#### Kotlin
-Kotlin uses == and equals() interchangeably to compare values or structural equality 
-Kotlin uses === for referential equality, to compare if two objects have the same memory address or not. 
-	
-## Null/nil references
-### Which does the language use? (null/nil/etc)
-Both Kotlin and Java use “null” to indicate null/nil. 
-
-### Does the language have features for handling null/nil references?
-#### Java
-Java handles Null poorly, the null pointer exception is the bane of many programmer’s existence. Java 8 introduces an optional feature to java in the form of the class java.util.Optional, which helps to solve some of those issues. Optionals may or may not have a return type, which prevents them from having null pointer issues. 
-#### Kotlin
-Kotlin takes great steps to avoid issues with null pointer exceptions, to the point where there are only a few things that cause them in the language.
-	* Explicitly calling them via throw NullPointerException()
-	* The !! or “not null assertion operator”
-	* Java interoperation, or times when Java messes with Kotlin via external code or other trickery.  
-## Errors and exception handling
-#### Java
-Java handles exceptions and errors through “try catch” blocks
-
-    try {
-    
-    } catch (try {   ExceptionType name) {
-    
-    } catch (ExceptionType name) {
-    
-    }
-(code example from https://goo.gl/gMHMBr)
-
-Each catch block is an exception handler that is handled based on its ExceptionType argument. The Catch block contains code that implements if the exception is called. 
-
-#### Kotlin
-Kotlin makes use of an almost identical process to java for exception and error handling, with some minor syntax changes. 
-
-    try {
-        // some code
-    }
-    catch (e: SomeException) {
-        // handler
-    }
-    finally {
-        // optional finally block
-    } 
-(code example from https://goo.gl/Ei6C4f)
-
-## Lambda expressions, closures, or functions as types
-#### Java
-Java 8 allows for Lambda expressions allow you to treat functionality as method argument, or code as data. A Lambda function can be created without belonging to any class. 
-Java uses these lambda expressions instead of closures, as they are similar. 
-
-#### Kotlin
-Kotlin as well, allows for Lambda expressions in the same way java does, but with a few exceptions that make the syntax better. 
-
+* Memory management
+  * How is it handled?
+  * How does it work?
+  * Garbage collection?
+  * Automatic reference counting?
+* Comparisons of references and values
+  * How are values compared? (i.e. comparing two strings)
+* Null/nil references
+  * Which does the language use? (null/nil/etc)
+  * Does the language have features for handling null/nil references?
+* Errors and exception handling
+* Lambda expressions, closures, or functions as types
 
 [comment]: # (Jordan)
 
